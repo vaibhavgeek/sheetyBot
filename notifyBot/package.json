@@ -1,0 +1,18 @@
+{
+  "name": "botlambda",
+  "version": "1.0.0",
+  "description": "This is lambda function to check for database records and thus the google sheet file and update it when needed. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.884.0",
+    "dotenv": "^8.2.0",
+    "google-spreadsheet": "^3.1.15",
+    "googleapis": "^71.0.0",
+    "uuid": "^8.3.2"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "lambda": {
+    "role": "messagingbot-executor",
+    "name": "messagingbot",
+    "region": "ap-south-1"
+  },
+  "api": {
+    "id": "yi1c4otoma",
+    "module": "index"
+  }
+}

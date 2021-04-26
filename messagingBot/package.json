@@ -1,0 +1,19 @@
+{
+  "name": "messagingbot",
+  "version": "1.0.0",
+  "description": "This is the messaging bot sheety bots",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.888.0",
+    "claudia-bot-builder": "^4.5.0",
+    "dotenv": "^8.2.0",
+    "google-spreadsheet": "^3.1.15",
+    "googleapis": "^71.0.0",
+    "uuid": "^8.3.2"
+  }
+}

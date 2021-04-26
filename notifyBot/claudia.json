@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "botlambda-executor",
+    "name": "botlambda",
+    "region": "ap-south-1"
+  }
+}
