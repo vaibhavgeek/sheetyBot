@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Sheety Bot!</title>
+		<link>https://sheety.vacode.xyz/</link>
+		<description>Recent content on sheety.vacode.xyz</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright ChaturBots AI Private Limited | Sheety Bots</copyright>
+		
+		<atom:link href="https://sheety.vacode.xyz/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title></title>
+			<link>https://sheety.vacode.xyz/about/</link>
+			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+			
+			<guid>https://sheety.vacode.xyz/about/</guid>
+			<description>
+				
+				About SheetyBots SheetyBots was born out a problem that sheets are hard to fill and we often do not remember to fill the...
+				
+			</description>
+		</item>
+		<item>
+			<title></title>
+			<link>https://sheety.vacode.xyz/homepage/</link>
+			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+			
+			<guid>https://sheety.vacode.xyz/homepage/</guid>
+			<description>
+				
+				   What does this chatbot do?  This chatbot allows you to update your google sheet periodically from regular bot notific...
+				
+			</description>
+		</item>
+		<item>
+			<title></title>
+			<link>https://sheety.vacode.xyz/tutorial/</link>
+			<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+			
+			<guid>https://sheety.vacode.xyz/tutorial/</guid>
+			<description>
+				
+				Sheety Chatbot! In this tutorial we are going to learn how to build a notification chatbot which sends you notifications...
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

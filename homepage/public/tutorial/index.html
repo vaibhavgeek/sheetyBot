@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.68.3" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<meta property="og:title" content="">
+	
+	
+	<meta name="keywords" content="vaibhav,google sheets,chatbot,sheetybot"><meta name="description" content=""><meta property="og:title" content="" />
+<meta property="og:description" content="Sheety Chatbot! In this tutorial we are going to learn how to build a notification chatbot which sends you notifications at specific time intervals and talks to you if you want to receive them or not.
+For the purpose of this tutorial we are going to build a bot which checks every 5 minutes on a google sheet if the person has marked his work or not and notifies specific subscriber on their telegram/slack/skype account if they have." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sheety.vacode.xyz/tutorial/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Sheety Chatbot! In this tutorial we are going to learn how to build a notification chatbot which sends you notifications at specific time intervals and talks to you if you want to receive them or not.
+For the purpose of this tutorial we are going to build a bot which checks every 5 minutes on a google sheet if the person has marked his work or not and notifies specific subscriber on their telegram/slack/skype account if they have."/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<link rel="stylesheet" href="/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title> | Sheety Bot!</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://sheety.vacode.xyz/">
+		  <img src="https://raw.githubusercontent.com/vaibhavgeek/chaturbots/master/app/assets/images/cb_white_blue.png" alt="Sheety Bot!">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://sheety.vacode.xyz/">Sheety Bot!</a></h2></div>
+	<div id="title-description"><p id="subtitle">Convert your Google Sheets into a Chatbot!</p><div id="social">
+			<nav>
+				<ul>
+					<li><a href="https://github.com/vaibhavgeek/sheetyBot"><i title="Github" class="icons fab fa-github"></i></a></li>
+					<li><a href="https://twitter.com/vaibhavgeek"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="mailto:vaibhav.dkm@gmail.com"><i title="Email" class="icons fas fa-envelope"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tutorial">Tutorial</a></li>
+				
+				<li><a href="https://vacode.xyz/">Author</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="matter">
+			<h1 class="title"></h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<h2 id="sheety-chatbot">Sheety Chatbot!</h2>
+<p>In this tutorial we are going to learn how to build a notification chatbot which sends you notifications at specific time intervals and talks to you if you want to receive them or not.</p>
+<p>For the purpose of this tutorial we are going to build a bot which checks every 5 minutes on a google sheet if the person has marked his work or not and notifies specific <strong>subscriber</strong> on their telegram/slack/skype account if they have. Instead of a google sheet you can ping a website for changes.</p>
+<blockquote>
+<p>subscriber - the user who has subscribed to the project via Telegram/Slack/Skype</p>
+</blockquote>
+<p>We are going to use following stack for this purpose,</p>
+<ul>
+<li>DynamoDB -  subscribers and habits</li>
+<li>AWS Lambda -
+<ul>
+<li>serverless functions which is invoked when chatbot gets a message.</li>
+<li>a cron job which notifies the user for an update</li>
+</ul>
+</li>
+<li>Claudia.js - Wrapper to write chatbot for slack, telegram and skype</li>
+<li>Cloudwatch Rules - To trigger lambda function every 5 minutes</li>
+</ul>
+<h2 id="architecture">Architecture.</h2>
+<p>Information pertaining to which cell to update upon which question would be stored in our google sheets file.</p>
+<p>In our database, we are going to have two tables - subscribers , sheetcells</p>
+<p>Subscribers is going to have following columns,
+- id
+- slackToken
+- slackId
+- telegramId
+- skypeId
+- sheetId</p>
+<p>Sheetcells is going to have following columns,
+- cell
+- value
+- last checked
+- type : enum [ &ldquo;habit&rdquo;, &ldquo;goal&rdquo;, &ldquo;day&rdquo; ]
+- subscriberId</p>
+<p>For our main infrastructure, we will have cloudwatch event calling our notification lambda function (called as notifyLambda), which will send the message to our user.  The conversations would be handled by separate lambda function which is called (</p>
+
+	</div>
+	
+	
+	
+	
+	
+		
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+<footer>
+	 © Copyright ChaturBots AI Private Limited | Sheety Bots 
+	
+	
+	
+</footer>
+
+
+</body>
+</html>
