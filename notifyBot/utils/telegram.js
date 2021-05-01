@@ -29,22 +29,20 @@ class telegram {
         })
     }
 
-    notify(chat_id, project_name, release_page, version_info, cb) {
+    notify(chat_id, item, cb) {
         const bot_token = process.env.telegram_bot_token;
+       const msg = `Greetings from Sheety Chatbot, this your ${item["frequency"]} question, 
+Question : *${item["question"]}*,
+Your response will update cell _${item["responseCell"]}_ on worksheet _${item["sheetResponse"]}_.`;
+ 
         const options = {
             url: `https://api.telegram.org/bot${bot_token}/sendMessage`,
             method: 'POST',
             timeout: 3000,
             json: {
                 chat_id: chat_id,
-                text: this._format(project_name, version_info),
-                parse_mode: 'Markdown',
-                reply_markup: JSON.stringify({
-                    forceReply: [[{
-                        text: 'Check it out!',
-                        url: release_page
-                    }]]
-                })
+                text: msg,
+                parse_mode: 'Markdown'
             },
         }
 
@@ -63,9 +61,6 @@ class telegram {
 
     _format(name, info) {
         let str = `\`${name}\` sheet has been updated!!\n`
-        // info.forEach((item) => {
-        //     str += `*${item.version}* released at ${item.date}\n`
-        // })
         return str
     }
 }

@@ -47,6 +47,21 @@ const getSubscriber = async function (id) {
   return dynamoDb.get(params).promise();
 };
 
+const sendNotification = async function (id, pendingNotifications) {
+  const params = {
+    ...tableName,
+    Key: {
+      id: id,
+    },
+    UpdateExpression: "set botsettings = :bots",
+    ExpressionAttributeValues: {
+      ":bots": pendingNotifications,
+    },
+    ReturnValues: "ALL_OLD",
+  };
+  return dynamoDb.update(params).promise();
+};
+
 const lastMessage = async function(id, message, from){
   const params = {
     ...tableName,
@@ -149,4 +164,5 @@ module.exports = {
   interactSubscriber,
   getSubscriber,
   updateSheet,
+  sendNotification,
 };

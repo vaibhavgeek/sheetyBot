@@ -23,13 +23,11 @@ const literalToEpoch = {
   "Bi-Weekly": 14 * 24 * 60 * 60 * 1000,
 };
 
-const updateLastActivity = async (sheetId, botsettings) => {
+const updateLastActivity = async (sheetId, botsetting) => {
   try {
-    botsettings.forEach(async function (botsetting, index) {
       const lastXY = "E" + botsetting["rowId"].toString();
-      const d = new Date().getTime();
+      const d = botsetting["lastActivity"] + literalToEpoch[botsetting["frequency"]];
       await saveResponse(sheetId, defaultSheetName, lastXY, d);
-    });
   } catch (e) {}
 };
 const checkToRespond = async (sheetId) => {

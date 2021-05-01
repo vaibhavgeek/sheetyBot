@@ -2,7 +2,7 @@
   "name": "botlambda",
   "version": "1.0.0",
   "description": "This is lambda function to check for database records and thus the google sheet file and update it when needed. ",
-  "main": "index.js",
+  "main": "notify.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

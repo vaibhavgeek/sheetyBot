@@ -10,18 +10,16 @@ const notify = async function () {
     const sheetId = itemRecord["sheetId"];
     const value = await sheet.checkToRespond(sheetId);
     if (value && itemRecord["platform"] === "telegram") {
-      const msg = `Greetings from Sheety Chatbot, this your ${value[0]["frequency"]} question, 
-Question : *${value[0]["question"]}*,
-Your response will update cell _${value[0]["responseCell"]}_ on worksheet _${value[0]["sheetResponse"]}_.`;
-      tel.send(itemRecord["client"], msg, (err) => {
+      tel.notify(itemRecord["client"], value[0], (err) => {
         console.log(err);
       });
-      value.shift();
       const updated = await db.sendNotification(itemRecord["id"], value);
     }
   }
 };
-
+// This is used for testing
 (async function () {
   await notify();
 })();
+
+module.exports = notify;

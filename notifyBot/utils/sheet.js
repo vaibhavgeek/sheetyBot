@@ -27,7 +27,7 @@ const updateLastActivity = async (sheetId, botsettings) => {
   try {
     botsettings.forEach(async function (botsetting, index) {
       const lastXY = "E" + botsetting["rowId"].toString();
-      const d = new Date().getTime();
+      const d = botsetting["lastActivity"] + literalToEpoch[botsetting["frequency"]];
       await saveResponse(sheetId, defaultSheetName, lastXY, d);
     });
   } catch (e) {}
@@ -82,7 +82,7 @@ const getBotSettings = async (sheetId) => {
     const sheet = doc.sheetsByTitle["botsettings"];
     await sheet.loadCells("A3:E7");
     const getQuestions = [];
-    for (var i = 3; i < 7; i++) {
+    for (var i = 3; i <= 7; i++) {
       const cellXY = "A" + i.toString();
       const responseXY = "C" + i.toString();
       const sheetXY = "B" + i.toString();
