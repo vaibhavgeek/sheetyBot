@@ -132,15 +132,23 @@ const renameSheet = async (sheetId, sheetIndex) => {
 const checkAccess = async (sheetId) => {
   try {
     const response = (
-      await sheets.spreadsheets.developerMetadata.get({
+      await sheets.spreadsheets.get({
         spreadsheetId: sheetId,
-        metadataId: 0,
         auth: jwtClient,
       })
     ).data;
-    return response;
+    const workSheets = response.sheets;
+    for(var i = 0; i<workSheets.length;i++){
+      let properties = workSheets[i].properties;
+      let title = properties.title;
+      if(title === "botsettings"){
+        return false;
+      }
+    };
+    return true;
   } catch (err) {
     console.log(err);
+    return "No Access";
   }
 };
 
@@ -164,7 +172,7 @@ const copySheet = async (sheetId) => {
 };
 
 (async function () {
-  const testSheetId = "1Z6pAK44Pi38Q17TbaWqMEfPC2diLa5Lm9G1os9j8jFY";
+  const testSheetId = "1gO2rH6waSDVyjJ_Fd3XczHCejLgkAz7-4XGbhzoXtBU";
   // const renameObject = await copySheet(testSheetId);
   //console.log(renameObject);
   // await renameSheet(testSheetId, renameObject["sheetId"]);
@@ -179,6 +187,7 @@ const copySheet = async (sheetId) => {
   // );
 //  const response = console.log(JSON.stringify(await checkAccess(testSheetId), null, 4));
 //  console.log(response);
+  //console.log(await checkAccess(testSheetId));
 })();
 
 module.exports = {
@@ -189,4 +198,5 @@ module.exports = {
   updateLastActivity,
   saveResponse,
   readCell,
+  checkAccess,
 };
