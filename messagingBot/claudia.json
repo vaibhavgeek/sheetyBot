@@ -1,6 +1,6 @@
 {
   "lambda": {
-    "role": "messagingbot-executor",
+    "role": "serverless-lambda-role",
     "name": "messagingbot",
     "region": "ap-south-1"
   },
