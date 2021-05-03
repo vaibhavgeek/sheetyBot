@@ -22,4 +22,4 @@ const notify = async function () {
   await notify();
 })();
 
-module.exports = notify;
+exports.handler = notify;
