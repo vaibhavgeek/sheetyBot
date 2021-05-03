@@ -1,7 +1,8 @@
 {
   "lambda": {
-    "role": "botlambda-executor",
+    "role": "serverless-lamda-role",
     "name": "botlambda",
-    "region": "ap-south-1"
+    "region": "ap-south-1",
+    "sharedRole": true
   }
 }
