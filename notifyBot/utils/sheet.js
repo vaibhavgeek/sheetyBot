@@ -30,7 +30,9 @@ const updateLastActivity = async (sheetId, botsettings) => {
       const d = botsetting["lastActivity"] + literalToEpoch[botsetting["frequency"]];
       await saveResponse(sheetId, defaultSheetName, lastXY, d);
     });
-  } catch (e) {}
+  } catch (e) {
+  console.log("update last activity", e);
+  }
 };
 const checkToRespond = async (sheetId) => {
   try {
@@ -48,6 +50,7 @@ const checkToRespond = async (sheetId) => {
     });
     return returnBots;
   } catch (e) {
+    console.log(e);
     return false;
   }
 };
@@ -100,7 +103,7 @@ const getBotSettings = async (sheetId) => {
     }
     return getQuestions;
   } catch (e) {
-    //console.log(e);
+    console.log(e);
     return "something went wrong!";
   }
 };
@@ -152,7 +155,7 @@ const copySheet = async (sheetId) => {
 };
 
 (async function () {
-  const testSheetId = "1M7wrlPAYywMjaPH1xclmUI4o3xtFyd4mMYSHTyC6IgI";
+  //const testSheetId = "1M7wrlPAYywMjaPH1xclmUI4o3xtFyd4mMYSHTyC6IgI";
   // const renameObject = await copySheet(testSheetId);
   //console.log(renameObject);
   // await renameSheet(testSheetId, renameObject["sheetId"]);
