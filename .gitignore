@@ -2,3 +2,5 @@ node_modules
 *.sublime-workspace
 npm-debug.log
 .env
+messagingBot/utils/*.json
+notifyBot/utils/*.json

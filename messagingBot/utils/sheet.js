@@ -25,9 +25,12 @@ const literalToEpoch = {
 
 const updateLastActivity = async (sheetId, botsetting) => {
   try {
-      const lastXY = "E" + botsetting["rowId"].toString();
-      const d = botsetting["lastActivity"] + literalToEpoch[botsetting["frequency"]];
-      await saveResponse(sheetId, defaultSheetName, lastXY, d);
+    const lastXY = "E" + botsetting["rowId"].toString();
+    let d = new Date().getTime();
+    if (botsetting["lastActivity"]) {
+      d=botsetting["lastActivity"] + literalToEpoch[botsetting["frequency"]];
+    }
+    await saveResponse(sheetId, defaultSheetName, lastXY, d);
   } catch (e) {}
 };
 const checkToRespond = async (sheetId) => {
@@ -138,13 +141,13 @@ const checkAccess = async (sheetId) => {
       })
     ).data;
     const workSheets = response.sheets;
-    for(var i = 0; i<workSheets.length;i++){
+    for (var i = 0; i < workSheets.length; i++) {
       let properties = workSheets[i].properties;
       let title = properties.title;
-      if(title === "botsettings"){
+      if (title === "botsettings") {
         return false;
       }
-    };
+    }
     return true;
   } catch (err) {
     console.log(err);
@@ -185,8 +188,8 @@ const copySheet = async (sheetId) => {
   //console.log(
   //  await getQuestions("1M7wrlPAYywMjaPH1xclmUI4o3xtFyd4mMYSHTyC6IgI")
   // );
-//  const response = console.log(JSON.stringify(await checkAccess(testSheetId), null, 4));
-//  console.log(response);
+  //  const response = console.log(JSON.stringify(await checkAccess(testSheetId), null, 4));
+  //  console.log(response);
   //console.log(await checkAccess(testSheetId));
 })();
 

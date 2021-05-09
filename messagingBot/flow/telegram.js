@@ -7,12 +7,11 @@ const msg = require("./../constants");
 const createBot = async function (id, message) {
   var matches = /\/([\w-_]{15,})\/(.*?gid=(\d+))?/.exec(message);
 
-  if(matches == null || matches == undefined) 
-    return msg.STEP_1_ERROR;
-  
-  let sid =  matches[1];
-  let access = await sheet.checkAccess(sid); 
-  
+  if (matches === null || matches === undefined) return msg.STEP_1_ERROR;
+
+  let sid = matches[1];
+  let access = await sheet.checkAccess(sid);
+
   if (matches && access) {
     await db.updateSheet(id, sid);
     let workSheet = await sheet.copySheet(sid);
@@ -22,11 +21,9 @@ const createBot = async function (id, message) {
       `Successfully created botsettings worksheet for, ${message}`,
       msg.STEP_4,
     ];
-  } 
-  else if(!access) {
+  } else if (!access) {
     return msg.STEP_3_ERROR;
-  }
-  else {
+  } else {
     return msg.STEP_2_ERROR;
   }
 };
@@ -35,8 +32,8 @@ const notifyBotResponse = async function (id, message, itemRecord) {
   let botsettings = itemRecord.Attributes.botsettings;
   let responseNotification =
     "No more updates from the sheeet, at this point of time!";
-
-  if (botsettings.length > 0) {
+  if(!botsettings || botsettings.length === 0) return msg.DEFAULT_MESSAGE;
+  if (botsettings && botsettings.length > 0) {
     let botsetting = itemRecord.Attributes.botsettings[0];
     await sheet.saveResponse(
       itemRecord.Attributes.sheetId,
@@ -49,18 +46,20 @@ const notifyBotResponse = async function (id, message, itemRecord) {
     await db.sendNotification(itemRecord.Attributes.id, botsettings);
   }
 
-  if (botsettings.length > 0) {
+  if (botsettings && botsettings.length > 0) {
     let item = botsettings[0];
     responseNotification = `Greetings from Sheety Chatbot, this your ${item["frequency"]} question, 
 Question : *${item["question"]}*,
 Your response will update cell _${item["responseCell"]}_ on worksheet _${item["sheetResponse"]}_.`;
 
     return [
-      `Updated ${botsetting.responseCell} on Sheet ${botsetting.sheetResponse}`,
-      responseNotification,
+      new telegramTemplate.Text(
+        `Updated Sheet!`
+      ).get(),
+      new telegramTemplate.Text(responseNotification).get(),
     ];
   } else {
-    return msg.DEFAULT_MESSAGE;
+    return msg.MARKED_ALL;
   }
 };
 
@@ -94,42 +93,42 @@ module.exports = telegramBot;
 //This function is used to test the above code and flow
 
 //(async function () {
-  //let message = {
-    //sender: 545485074,
-    //text:
-      //"https://docs.google.com/spreadsheets/u/1/d/1gO2rH6waSDVyjJ_Fd3XczHCejLgkAz7-4XGbhzoXtBU/edit#gid=131091788",
-    //originalRequest: {
-      //update_id: 403385039,
-      //message: {
-        //message_id: 8,
-        //from: {
-          //id: 545485074,
-          //is_bot: false,
-          //first_name: "Vaibhav",
-          //last_name: "Maheshwari",
-          //username: "ayeayecapt3n",
-          //language_code: "en",
-        //},
-        //chat: {
-          //id: 545485074,
-          //first_name: "Vaibhav",
-          //last_name: "Maheshwari",
-          //username: "ayeayecapt3n",
-          //type: "private",
-        //},
-        //date: 1618821516,
-        //text: "/start",
-        //entities: [
-          //{
-            //offset: 0,
-            //length: 6,
-            //type: "bot_command",
-          //},
-        //],
-      //},
-    //},
-    //type: "telegram",
-  //};
-  //const botResponse = await telegramBot(message, {});
-  //console.log(botResponse);
+//let message = {
+//sender: 545485074,
+//text:
+//"https://docs.google.com/spreadsheets/u/1/d/1gO2rH6waSDVyjJ_Fd3XczHCejLgkAz7-4XGbhzoXtBU/edit#gid=131091788",
+//originalRequest: {
+//update_id: 403385039,
+//message: {
+//message_id: 8,
+//from: {
+//id: 545485074,
+//is_bot: false,
+//first_name: "Vaibhav",
+//last_name: "Maheshwari",
+//username: "ayeayecapt3n",
+//language_code: "en",
+//},
+//chat: {
+//id: 545485074,
+//first_name: "Vaibhav",
+//last_name: "Maheshwari",
+//username: "ayeayecapt3n",
+//type: "private",
+//},
+//date: 1618821516,
+//text: "/start",
+//entities: [
+//{
+//offset: 0,
+//length: 6,
+//type: "bot_command",
+//},
+//],
+//},
+//},
+//type: "telegram",
+//};
+//const botResponse = await telegramBot(message, {});
+//console.log(botResponse);
 //})();
