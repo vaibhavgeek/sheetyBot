@@ -38,7 +38,7 @@ Your response will update cell _${item["responseCell"]}_ on worksheet _${item["s
         const options = {
             url: `https://api.telegram.org/bot${bot_token}/sendMessage`,
             method: 'POST',
-            timeout: 3000,
+            timeout: 6000,
             json: {
                 chat_id: chat_id,
                 text: msg,
@@ -58,7 +58,6 @@ Your response will update cell _${item["responseCell"]}_ on worksheet _${item["s
             cb(null)
         })
     }
-
     _format(name, info) {
         let str = `\`${name}\` sheet has been updated!!\n`
         return str
