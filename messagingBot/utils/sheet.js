@@ -152,7 +152,7 @@ const checkAccess = async (sheetId) => {
     return true;
   } catch (err) {
     console.log(err);
-    return "No Access";
+    return false;
   }
 };
 
