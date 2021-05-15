@@ -18,8 +18,8 @@ const notify = async function () {
   }
 };
 // This is used for testing
-(async function () {
-  await notify();
-})();
+//(async function () {
+//  await notify();
+//})();
 
 exports.handler = notify;
