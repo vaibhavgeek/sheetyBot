@@ -1,6 +1,6 @@
 const msg = {
   WELCOME: "Hello, welcome to Sheety Bots! You can now turn any google sheet into a chatbot!",
-  START_VIDEO: "This is a quick 30 second video to hel you get started!",
+  START_VIDEO: "This is a quick video to help you get started!, https://www.youtube.com/watch?v=gMfyY6gOaGI",
   STEP_1: "Please give access to google sheet!",
   STEP_2: "Paste link to your google sheet for the bot to access it!",
   STEP_3: "Please setup botsettings worksheet on your google sheet to proceed",

@@ -9,7 +9,8 @@ const notify = async function () {
     const itemRecord = allItems["Items"][item];
     const sheetId = itemRecord["sheetId"];
     const value = await sheet.checkToRespond(sheetId);
-    if (value && itemRecord["platform"] === "telegram") {
+    if (value && value.length > 0 && itemRecord["platform"] === "telegram") {
+      console.log("value",value);
       tel.notify(itemRecord["client"], value[0], (err) => {
         console.log(err);
       });
@@ -19,7 +20,7 @@ const notify = async function () {
 };
 // This is used for testing
 //(async function () {
-//  await notify();
+  //await notify();
 //})();
 
 exports.handler = notify;
