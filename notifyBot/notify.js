@@ -8,19 +8,20 @@ const notify = async function () {
   for (const item in allItems["Items"]) {
     const itemRecord = allItems["Items"][item];
     const sheetId = itemRecord["sheetId"];
-    const value = await sheet.checkToRespond(sheetId);
-    if (value && value.length > 0 && itemRecord["platform"] === "telegram") {
-      console.log("value",value);
-      tel.notify(itemRecord["client"], value[0], (err) => {
-        console.log(err);
-      });
-      const updated = await db.sendNotification(itemRecord["id"], value);
+    console.log("sheetId", sheetId);
+    if (sheetId !== undefined && await sheet.checkAccess(sheetId)) {
+      const value = await sheet.checkToRespond(sheetId);
+      if (value && value.length > 0 && itemRecord["platform"] === "telegram") {
+        tel.notify(itemRecord["client"], value[0], (err) => {
+        });
+        const updated = await db.sendNotification(itemRecord["id"], value);
+      }
     }
   }
 };
 // This is used for testing
-//(async function () {
-  //await notify();
-//})();
+(async function () {
+  await notify();
+})();
 
 exports.handler = notify;

@@ -39,7 +39,6 @@ const checkToRespond = async (sheetId) => {
   try {
     const botsettings = await getBotSettings(sheetId);
     const returnBots = [];
-    console.log("check from console", botsettings);
     botsettings.forEach(async function (botsetting, index) {
       if (
         botsetting["lastActivity"] === null ||
@@ -106,6 +105,19 @@ const getBotSettings = async (sheetId) => {
   } catch (e) {
     console.log(e);
     return "something went wrong!";
+  }
+};
+const checkAccess = async (sheetId) => {
+  try {
+    const response = (
+      await sheets.spreadsheets.get({
+        spreadsheetId: sheetId,
+        auth: jwtClient,
+      })
+    ).data;
+    return true;
+  } catch (err) {
+    return false;
   }
 };
 
@@ -179,4 +191,5 @@ module.exports = {
   updateLastActivity,
   saveResponse,
   readCell,
+  checkAccess,
 };

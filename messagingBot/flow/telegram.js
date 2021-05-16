@@ -91,42 +91,42 @@ module.exports = telegramBot;
 //This function is used to test the above code and flow
 
 (async function () {
-  let message = {
-    sender: 545485074,
-    text:
-      "https://docs.google.com/spreadsheets/d/1FuUBXAmCs4aUpYlieyk07uJDIHqzyk9GOPOLtFoniXQ/edit#gid=1014883060",
-    originalRequest: {
-      update_id: 403385039,
-      message: {
-        message_id: 8,
-        from: {
-          id: 545485074,
-          is_bot: false,
-          first_name: "Vaibhav",
-          last_name: "Maheshwari",
-          username: "ayeayecapt3n",
-          language_code: "en",
-        },
-        chat: {
-          id: 545485074,
-          first_name: "Vaibhav",
-          last_name: "Maheshwari",
-          username: "ayeayecapt3n",
-          type: "private",
-        },
-        date: 1618821516,
-        text: "/start",
-        entities: [
-          {
-            offset: 0,
-            length: 6,
-            type: "bot_command",
-          },
-        ],
-      },
-    },
-    type: "telegram",
-  };
-  const botResponse = await telegramBot(message, {});
-  console.log(botResponse);
+let message = {
+sender: 545485074,
+text:
+"https://docs.google.com/spreadsheets/d/1FuUBXAmCs4aUpYlieyk07uJDIHqzyk9GOPOLtFoniXQ/edit#gid=1014883060",
+originalRequest: {
+update_id: 403385039,
+message: {
+message_id: 8,
+from: {
+id: 545485074,
+is_bot: false,
+first_name: "Vaibhav",
+last_name: "Maheshwari",
+username: "ayeayecapt3n",
+language_code: "en",
+},
+chat: {
+id: 545485074,
+first_name: "Vaibhav",
+last_name: "Maheshwari",
+username: "ayeayecapt3n",
+type: "private",
+},
+date: 1618821516,
+text: "/start",
+entities: [
+{
+offset: 0,
+length: 6,
+type: "bot_command",
+},
+],
+},
+},
+type: "telegram",
+};
+const botResponse = await telegramBot(message, {});
+console.log(botResponse);
 })();
