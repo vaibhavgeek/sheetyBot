@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.884.0",
+    "aws-sdk": "^2.1354.0",
     "dotenv": "^8.2.0",
     "google-spreadsheet": "^3.1.15",
     "googleapis": "^71.0.0",
